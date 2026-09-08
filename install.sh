@@ -12,6 +12,7 @@ apt-get install libfreetype6-dev -y
 apt-get install liblcms2-dev -y
 apt-get install libopenjp2-7 -y
 apt-get install libtiff6 -y
+pip3 config set global.break-system-packages true
 pip3 install rpi_ws281x
 pip3 install adafruit-circuitpython-neopixel
 pip3 install adafruit-circuitpython-ssd1306
