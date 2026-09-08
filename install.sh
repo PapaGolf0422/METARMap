@@ -15,6 +15,6 @@ cd /home/pi
 chmod +x refresh.sh
 chmod +x lightsoff.sh
 chmod +r airports
-chmod +r display airports
+chmod +r displayairports
 chmod +r metar.py
 chmod +r pixelsoff.py
