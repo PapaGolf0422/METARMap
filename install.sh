@@ -1,4 +1,4 @@
-//must be run as sudo!
+#must be run as sudo!
 
 apt-get update
 apt-get upgrade -y
