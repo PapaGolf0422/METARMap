@@ -12,17 +12,17 @@ apt-get install libfreetype6-dev -y
 apt-get install liblcms2-dev -y
 apt-get install libopenjp2-7 -y
 apt-get install libtiff6 -y
-pip3 install rpi_ws281x -y
-pip3 install adafruit-circuitpython-neopixel -y
-pip3 install adafruit-circuitpython-ssd1306 -y
-pip3 install pillow -y
-pip3 install astral -y
-cp metar.py /home/pi
-cp pixelsoff.py /home/pi
-cp airports /home/pi
-cp displayairports /home/pi
-cp refresh.sh /home/pi
-cp lightsoff.sh /home/pi
+pip3 install rpi_ws281x
+pip3 install adafruit-circuitpython-neopixel
+pip3 install adafruit-circuitpython-ssd1306
+pip3 install pillow
+pip3 install astral
+\cp metar.py /home/pi
+\cp pixelsoff.py /home/pi
+\cp airports /home/pi
+\cp displayairports /home/pi
+\cp refresh.sh /home/pi
+\cp lightsoff.sh /home/pi
 \cp crontab /etc/crontab
 cd /home/pi
 chmod +x refresh.sh
