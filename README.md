@@ -1,22 +1,27 @@
 # METARMap
 
-Raspberry Pi project to visualize flight conditions on a map using WS8211 LEDs addressed via NeoPixel
+This is a fork of pruekers Raspberry Pi project to visualize flight conditions on a map using WS8211 LEDs addressed via NeoPixel
+This particular map uses 100 LED's to cover SE Texas, and includes the display.  I developed this fork when the previous fell behind and I got tired of reconfiguring everytime the API got updated.
 
 ## Detailed instructions
 
-I've created detailed instructions about the setup and parts used here: https://slingtsi.rueker.com/making-a-led-powered-metar-map-for-your-wall/
-
+They created detailed instructions about the setup and parts used here: https://slingtsi.rueker.com/making-a-led-powered-metar-map-for-your-wall/
+I edited the setup below to make my life easier
 ## Software Setup
 
-* Install [Raspberry Pi OS Lite](https://www.raspberrypi.org/software/) on SD card
-* [Enable Wi-Fi and SSH](https://medium.com/@danidudas/install-raspbian-jessie-lite-and-setup-wi-fi-without-access-to-command-line-or-using-the-network-97f065af722e)
+* Install [Bookworm Raspberry Pi OS Lite](https://www.raspberrypi.org/software/) on SD card using RasPi Imager, Set timezone, username 'pi' and password. Also, configure WiFi and Allow SSH here.
 * Install SD card and power up Raspberry Pi
-* SSH (using [Putty](https://www.putty.org) or some other SSH tool) into the Raspberry and configure password and timezones
-  * `passwd`
-  * `sudo raspi-config`
+* SSH (using [Putty](https://www.putty.org) or some other SSH tool) into the Raspberry
+  * Enable I2C if using the display using 'sudo raspi-config'
 * Update packages 
   * `sudo apt-get update`
   * `sudo apt-get upgrade`
+  * 'sudo apt-get install git -y'
+  * 'git clone https://github.com/PapaGolf0422/METARMap'
+  * 'cd METARMap'
+  * 'chmod +x install.sh'
+  * 'sudo ./install.sh'
+  * 
 * Copy the **[metar.py](metar.py)**, **[pixelsoff.py](pixelsoff.py)**, **[airports](airports)**, **[refresh.sh](refresh.sh)** and **[lightsoff.sh](lightsoff.sh)** scripts into the pi home directory (/home/pi)
 * Install python3 and pip3 if not already installed
   * `sudo apt-get install python3`
