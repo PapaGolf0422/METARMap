@@ -25,6 +25,7 @@ pip3 install astral
 \cp refresh.sh /home/pi
 \cp lightsoff.sh /home/pi
 \cp crontab /etc/crontab
+chmod +x updategit.sh
 cd /home/pi
 chmod +x refresh.sh
 chmod +x lightsoff.sh
