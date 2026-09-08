@@ -1,6 +1,7 @@
 cd /home/pi/METARMap
 git pull
 \cp metar.py /home/pi
+\cp displaymetar.py /home/pi
 \cp pixelsoff.py /home/pi
 \cp airports /home/pi
 \cp displayairports /home/pi
@@ -13,4 +14,5 @@ chmod +x lightsoff.sh
 chmod +r airports
 chmod +r displayairports
 chmod +r metar.py
+chmod +r displaymetar.py
 chmod +r pixelsoff.py
