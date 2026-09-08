@@ -2,8 +2,21 @@
 
 apt-get update
 apt-get upgrade -y
-apt-get install python3 python3-pip i2c-tools fonts-dejavu libjpeg-dev zlib1g-dev libfreetype6-dev liblcms1-dev libopenjp2-7 libtiff5 -y
-pip3 install rpi_ws281x adafruit-circuitpython-neopixel adafruit-circuitpython-ssd1306 pillow astral -y
+apt-get install python3 -y
+apt-get install python3-pip -y
+apt-get install i2c-tools -y
+apt-get install fonts-dejavu -y
+apt-get install libjpeg-dev -y
+apt-get install zlib1g-dev -y
+apt-get install libfreetype6-dev -y
+apt-get install liblcms2-dev -y
+apt-get install libopenjp2-7 -y
+apt-get install libtiff6 -y
+pip3 install rpi_ws281x -y
+pip3 install adafruit-circuitpython-neopixel -y
+pip3 install adafruit-circuitpython-ssd1306 -y
+pip3 install pillow -y
+pip3 install astral -y
 cp metar.py /home/pi
 cp pixelsoff.py /home/pi
 cp airports /home/pi
