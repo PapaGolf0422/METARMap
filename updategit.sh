@@ -13,7 +13,6 @@ cd /home/pi/metarmap
 \cp lightsoff.sh /home/pi/
 
 cd /home/pi
-/bin/chmod +x updategit.sh
 /bin/chmod +x refresh.sh
 /bin/chmod +x lightsoff.sh
 /bin/chmod +r airports displayairports metar.py displaymetar.py pixelsoff.py
