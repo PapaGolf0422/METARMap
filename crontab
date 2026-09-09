@@ -20,5 +20,16 @@
 # For more information see the manual pages of crontab(5) and cron(8)
 #
 # m h  dom mon dow   command
-*/5 7-21 * * *  /home/pi/refresh.sh
-05 22 * * *     /home/pi/lightsoff.sh
+
+
+# Run updategit.sh on system startup
+@reboot                         /home/pi/updategit.sh > /dev/null 2>&1
+
+# Run METAR updates every 5 mins between 7:00 AM and 9:55 PM
+*/5 7-21 * * *                  /home/pi/refresh.sh > /dev/null 2>&1
+
+# Turn lights off at 10:05 PM
+05 22 * * *                     /home/pi/lightsoff.sh > /dev/null 2>&1
+
+# Nightly system reboot at 2:00 AM
+00 2 * * *                      /sbin/reboot
