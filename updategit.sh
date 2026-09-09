@@ -1,4 +1,4 @@
-cd /home/pi/METARMap
+cd /home/pi/metarmap
 git pull
 \cp metar.py /home/pi
 \cp displaymetar.py /home/pi
