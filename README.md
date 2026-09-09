@@ -1,12 +1,12 @@
 # METARMap
 
 This is a fork of pruekers Raspberry Pi project to visualize flight conditions on a map using WS8211 LEDs addressed via NeoPixel
-This particular map uses 100 LED's to cover SE Texas, and includes the display.  I developed this fork when the previous fell behind and I got tired of reconfiguring everytime the API got updated.
+This particular map uses 100 LED's to cover SE Texas, and includes the display.  I developed this fork when the previous fell behind and I got tired of reconfiguring everytime the API got updated.  Also, Python moved to a virtual environment for compatibility with Bookworm and Trixie!
 
 ## Detailed instructions
 
 They created detailed instructions about the setup and parts used here: https://slingtsi.rueker.com/making-a-led-powered-metar-map-for-your-wall/
-I edited the setup below to make my life easier
+I edited the setup and created an install script to make my life easier
 ## Software Setup
 
 * Install [Bookworm Raspberry Pi OS Lite](https://www.raspberrypi.org/software/) on SD card using RasPi Imager, Set timezone, username 'pi' and password. Also, configure WiFi and Allow SSH here.
@@ -15,10 +15,9 @@ I edited the setup below to make my life easier
   * Enable I2C if using the display using 'sudo raspi-config'
 * Update packages 
   * `sudo apt-get update`
-  * `sudo apt-get upgrade`
   * 'sudo apt-get install git -y'
-  * 'git clone https://github.com/PapaGolf0422/METARMap'
-  * 'cd METARMap'
+  * "git clone https://github.com/PapaGolf0422/METARMap.git /home/pi/metarmap"
+  * 'cd metarmap'
   * 'chmod +x install.sh'
   * 'sudo ./install.sh'
   * 
