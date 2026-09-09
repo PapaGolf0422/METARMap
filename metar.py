@@ -57,7 +57,7 @@ BLINK_SPEED		= 1.0			# Float in seconds, e.g. 0.5 for half a second
 BLINK_TOTALTIME_SECONDS	= 300
 
 # ----- Daytime dimming of LEDs based on time of day or Sunset/Sunrise -----
-ACTIVATE_DAYTIME_DIMMING = False		# Set to True if you want to dim the map after a certain time of day
+ACTIVATE_DAYTIME_DIMMING = True		# Set to True if you want to dim the map after a certain time of day
 BRIGHT_TIME_START	= datetime.time(7,0)	# Time of day to run at LED_BRIGHTNESS in hours and minutes
 DIM_TIME_START		= datetime.time(19,0)	# Time of day to run at LED_BRIGHTNESS_DIM in hours and minutes
 LED_BRIGHTNESS_DIM	= 0.1			# Float from 0.0 (min) to 1.0 (max)
