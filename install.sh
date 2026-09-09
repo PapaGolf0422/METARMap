@@ -18,11 +18,5 @@ pip3 install adafruit-circuitpython-neopixel
 pip3 install adafruit-circuitpython-ssd1306
 pip3 install pillow
 pip3 install astral
-\cp metar.py /home/pi
-\cp pixelsoff.py /home/pi
-\cp airports /home/pi
-\cp displayairports /home/pi
-\cp refresh.sh /home/pi
-\cp lightsoff.sh /home/pi
 chmod +x updategit.sh
 ./updategit.sh
