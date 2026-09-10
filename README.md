@@ -9,31 +9,26 @@ They created detailed instructions about the setup and parts used here: https://
 I edited the setup and created an install script to make my life easier
 ## Software Setup
 
-* Install [Bookworm Raspberry Pi OS Lite](https://www.raspberrypi.org/software/) on SD card using RasPi Imager, Set timezone, username 'pi' and password. Also, configure WiFi and Allow SSH here.
+* Install [Bookworm Raspberry Pi OS Lite](https://www.raspberrypi.org/software/) on SD card using RasPi Imager, Set timezone, username 'pi' and password of your choice. Also, configure WiFi and Allow SSH here.
+* There maybe a glitch in configuring SSH for Trixie, having a keyboard/hdmi TV to enable SSH in raspi-config maybe neccessary.   
 * Install SD card and power up Raspberry Pi
 * SSH (using [Putty](https://www.putty.org) or some other SSH tool) into the Raspberry
   * Enable I2C if using the display using 'sudo raspi-config'
 * Update packages 
   * `sudo apt-get update`
   * 'sudo apt-get install git -y'
-  * "git clone https://github.com/PapaGolf0422/METARMap.git /home/pi/metarmap"
+  * "sudo git clone https://github.com/PapaGolf0422/METARMap.git /home/pi/metarmap"
   * 'cd metarmap'
-  * 'chmod +x install.sh'
+  * 'sudo chmod +x install.sh'
   * 'sudo ./install.sh'
   * 
-* Copy the **[metar.py](metar.py)**, **[pixelsoff.py](pixelsoff.py)**, **[airports](airports)**, **[refresh.sh](refresh.sh)** and **[lightsoff.sh](lightsoff.sh)** scripts into the pi home directory (/home/pi)
-* Install python3 and pip3 if not already installed
-  * `sudo apt-get install python3`
-  * `sudo apt-get install python3-pip`
-* Install required python libraries for the project
-  * [Neopixel](https://learn.adafruit.com/neopixels-on-raspberry-pi/python-usage): `sudo pip3 install rpi_ws281x adafruit-circuitpython-neopixel`
-* Attach WS8211 LEDs to Raspberry Pi, if you are using just a few, you can connect the directly, otherwise you may need to also attach external power to the LEDs. For my purpose with 22 powered LEDs it was fine to just connect it directly. You can find [more details about wiring here](https://learn.adafruit.com/neopixels-on-raspberry-pi/raspberry-pi-wiring).
+* The installer script pulls all dependencies and moves the working scripts into the pi home directory and applies the required permissions for automatic execution through crontab (/home/pi)
+*
+* * Attach WS8211 LEDs to Raspberry Pi, if you are using just a few, you can connect the directly, otherwise you may need to also attach external power to the LEDs. For my purpose with 22 powered LEDs it was fine to just connect it directly. You can find [more details about wiring here](https://learn.adafruit.com/neopixels-on-raspberry-pi/raspberry-pi-wiring).
 * Test the script by running it directly (it needs to run with root permissions to access the GPIO pins):
   * `sudo python3 metar.py`
-* Make appropriate changes to the **[airports](airports)** file for the airports you want to use and change the **[metar.py](metar.py)** and **[pixelsoff.py](pixelsoff.py)** script to the correct **`LED_COUNT`** (including NULLs if you have LEDS in between airports that will stay off) and **`LED_BRIGHTNESS`** if you want to change it
-* To run the script automatically when you power the Raspberry Pi, you will need to grant permissions to execute the **[refresh.sh](refresh.sh)** and **[lightsoff.sh](lightsoff.sh)** script and read permissions to the **[airports](airports)**, **[metar.py](metar.py)** and **[pixelsoff.py](pixelsoff.py)** script using chmod:
-  * `chmod +x filename` will grant execute permissions
-  * `chmod +r filename` will grant write permissions
+* Make appropriate changes to the **[airports](airports)** file for the airports you want to use and change the **[metar.py](metar.py)** and **[pixelsoff.py](pixelsoff.py)** script to the correct **`LED_COUNT`** (including NULLs if you have LEDS in between airports that will stay off) and **`LED_BRIGHTNESS`** if you want to change it.  Change External Display to False if you do not have a display connected.
+
 * To have the script start up automatically and refresh in regular intervals, use crontab and set the appropriate interval. For an example you can refer to the [crontab](crontab) file in the GitHub repo (make sure you grant the file execute permissions beforehand to the refresh.sh and lightsoff.sh file). To edit your crontab type: **`crontab -e`**, after you are done with the edits, exit out by pressing **ctrl+x** and confirm the write operation
   * The sample crontab will run the script every 5 minutes (the */5) between the hours of 7 to 21, which includes the 21 hour, so it means it will run until 21:55
   * Then at 22:05 it will run the lightsoff.sh script, which will turn all the lights off
@@ -86,7 +81,7 @@ For time timings of the dimming there are two options:
 
 This optional functionality allows you to connect a small mini LED display to show the METAR information of the airports.
 
-For this functionality to work, you will need to buy a compatible LED display and enable and install a few additional things.
+For this functionality to work, you will need to buy a compatible SSD1306 OLED display and enable and install a few additional things.
 
 I've written up some details on the display I used and the wiring here: https://slingtsi.rueker.com/adding-a-mini-display-to-show-metar-information-to-the-metar-map/
 
@@ -97,23 +92,9 @@ To support the display you need to enable a few new libraries and settings on th
 * Interface Options
 * I2C
 * reboot the Reboot the Raspberry Pi `sudo reboot`
+* All of the libraries and scripts are installed during base install
 * Verify your wiring is working and I2C is enabled
-  * `sudo apt-get install i2c-tools`
   * `sudo i2cdetect -y 1` - this should show something connected at **3C**
-* install python library for the display
-  * `sudo pip3 install adafruit-circuitpython-ssd1306`
-  * `sudo pip3 install pillow`
-* install additional libraries needed to fill the display
-  * `sudo apt-get install fonts-dejavu`
-  * `sudo apt-get install libjpeg-dev -y`
-  * `sudo apt-get install zlib1g-dev -y`
-  * `sudo apt-get install libfreetype6-dev -y`
-  * `sudo apt-get install liblcms1-dev -y`
-  * `sudo apt-get install libopenjp2-7 -y`
-  * `sudo apt-get install libtiff5 -y`
-* copy new file **[displaymetar.py](displaymetar.py)** into the same folder as **[metar.py](metar.py)**
-* Use the latest version of **[metar.py](metar.py)** and **[pixelsoff.py](pixelsoff.py)** for the new functionality
-* Configure **[metar.py](metar.py)** and set **`ACTIVATE_EXTERNAL_METAR_DISPLAY`** parameter to **True**.
 * Configure the `DISPLAY_ROTATION_SPEED` to your desired timing, I'm using 5 seconds for mine.
 * If you want to only show a subset of the airports on the display, create a new file in the folder called **displayairports** and add the airports that you want to be shown on the display to it
 
