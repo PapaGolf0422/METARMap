@@ -6,6 +6,7 @@ import board
 import neopixel
 import time
 import datetime
+import re
 try:
 	import astral
 except ImportError:
@@ -206,7 +207,7 @@ for metar in root.iter('METAR'):
 		skyConditions.append(skyCond)
 	if metar.find('raw_text') is not None:
 		rawText = metar.find('raw_text').text
-		lightning = False if ((rawText.find('LTG', 4) == -1 and rawText.find('TS', 4) == -1) or rawText.find('TSNO', 4) != -1) else True
+	lightning = True if (re.search(r'\b(\+|\-)?(VC)?TS(RA|SN|GR|GS|HZ|PL)?\b', rawText) or 'LTG' in rawText) and 'TSNO' not in rawText else False
 	print(stationId + ":" 
 	+ flightCategory + ":" 
 	+ str(windDir) + "@" + str(windSpeed) + ("G" + str(windGustSpeed) if windGust else "") + ":"
