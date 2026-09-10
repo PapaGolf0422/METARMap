@@ -33,7 +33,8 @@ echo "=== Installing Python Libraries inside VENV ==="
   pillow \
   astral \
   luma.oled \
-  smbus2
+  smbus2 \
+  tzdata
 
 echo "=== Enabling Permissions & Executables ==="
 chmod +x updategit.sh
