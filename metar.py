@@ -207,7 +207,7 @@ for metar in root.iter('METAR'):
 		skyConditions.append(skyCond)
 	if metar.find('raw_text') is not None:
 		rawText = metar.find('raw_text').text
-	lightning = True if (re.search(r'\b(\+|\-)?(VC)?TS(RA|SN|GR|GS|HZ|PL)?\b', rawText) or 'LTG' in rawText) and 'TSNO' not in rawText else False
+	lightning = True if (re.search(r'\b(\+|\-)?(VC)?TS(RA|SN|GR|GS|HZ|PL)?\b', rawText) or ('LTG' in rawText and 'DSNT' not in rawText)) and 'TSNO' not in rawText else False
 	print(stationId + ":" 
 	+ flightCategory + ":" 
 	+ str(windDir) + "@" + str(windSpeed) + ("G" + str(windGustSpeed) if windGust else "") + ":"
